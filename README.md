@@ -1,119 +1,286 @@
-# Predictor de TEA - Aplicación Mejorada
+# Autism Prediction
 
-## 🎯 Descripción
-Aplicación para predicción de Trastorno del Espectro Autista basada en un modelo de Red Neuronal con **70% de precisión**. Utiliza 17 variables clínicas y conductuales para generar diagnósticos orientativos.
+Autism Prediction es un proyecto académico de Machine Learning orientado a la clasificación aproximada de patrones asociados al Trastorno del Espectro Autista (TEA), utilizando variables clínicas y conductuales simuladas.
 
-## 🚀 Versión Mejorada - Streamlit
+El proyecto incluye un modelo de red neuronal convertido a TensorFlow Lite, una interfaz interactiva desarrollada con Streamlit y versiones alternativas de interfaz en Tkinter, PyQt y Kivy.
 
-### **Archivo Principal:** `app_streamlit.py`
+> **Nota importante:** Este proyecto fue desarrollado con fines académicos. No sustituye una evaluación clínica profesional ni debe utilizarse como herramienta de diagnóstico médico definitivo.
 
-**Nuevas Características:**
-- ✅ **17 variables clínicas reales** (basadas en el modelo entrenado)
-- ✅ **Interfaz intuitiva** con formularios clínicos
-- ✅ **Cálculo automático del puntaje de riesgo**
-- ✅ **3 modos de uso:** Evaluación clínica, datos simulados, información del modelo
-- ✅ **Visualizaciones avanzadas** con gráficos de probabilidades
-- ✅ **Preprocesamiento automático** (OneHotEncoder + StandardScaler)
-- ✅ **Advertencias médicas** apropiadas
+## Objetivo del proyecto
 
-### **Variables Clínicas Incluidas:**
-1. **Básicas:** Edad, Sexo
-2. **Comunicación:** Lenguaje, Comunicación no verbal, Contacto visual, Respuesta al nombre
-3. **Social:** Interacción social
-4. **Comportamental:** Estereotipias, Intereses restringidos, Regulación emocional
-5. **Comorbilidades:** TDAH, Discapacidad intelectual
-6. **Sensorial:** Hipersensibilidad sensorial, Trastornos del sueño, Alimentación selectiva
-7. **Antecedentes:** Historia familiar
+El objetivo principal es aplicar técnicas de Machine Learning para construir una aplicación de apoyo orientativo que permita ingresar variables clínicas y conductuales, procesarlas y obtener una clasificación aproximada mediante un modelo previamente entrenado.
 
-### **Instalación y Uso:**
+El proyecto busca demostrar:
 
-```bash
-# Instalar dependencias
-pip install streamlit tensorflow pandas numpy scikit-learn
+* Preparación de datos clínicos simulados.
+* Entrenamiento de un modelo de clasificación.
+* Conversión del modelo a TensorFlow Lite.
+* Uso de inferencia local.
+* Construcción de una interfaz interactiva.
+* Organización modular del código.
+* Separación entre interfaz, preprocesamiento, modelo y predicción.
 
-# Ejecutar aplicación
-streamlit run app_streamlit.py
+## Tecnologías utilizadas
+
+* Python
+* Streamlit
+* TensorFlow Lite
+* Pandas
+* NumPy
+* Scikit-learn
+* Tkinter
+* PyQt
+* Kivy
+* Jupyter Notebook
+
+## Características principales
+
+* Interfaz principal con Streamlit.
+* Modelo en formato `.tflite`.
+* Predicción basada en 17 variables clínicas y conductuales.
+* Cálculo de puntaje de riesgo orientativo.
+* Visualización de probabilidades por categoría.
+* Modo de evaluación completa.
+* Modo de datos simulados.
+* Información general del modelo.
+* Código reorganizado en módulos reutilizables.
+
+## Estructura del proyecto
+
+```txt
+Autism_prediction/
+  app/
+    streamlit_app.py
+    tkinter_app.py
+    pyqt_app.py
+    kivy_app.py
+
+  data/
+    dataset_clinico_autismo.csv
+
+  models/
+    modelo_autismo.tflite
+
+  notebooks/
+    mark3.ipynb
+
+  src/
+    __init__.py
+    config.py
+    labels.py
+    model_loader.py
+    predictor.py
+    preprocessing.py
+    risk_score.py
+
+  tests/
+    debug_dimensions.py
+    test_app.py
+
+  .gitignore
+  README.md
+  requirements.txt
+  runtime.txt
 ```
 
-### **Diagnósticos Disponibles:**
-- 🟢 **Desarrollo típico**
-- 🟡 **TEA - Nivel 1** (Leve)
-- 🟠 **TEA - Nivel 2** (Moderado)
-- 🔴 **TEA - Nivel 3** (Severo)
-- ⚪ **Indeterminado**
+## Descripción de carpetas
 
----
+### `app/`
 
-## 📱 Otras Opciones Disponibles
+Contiene las interfaces de usuario del proyecto.
 
-### 1. **Tkinter (Sin instalaciones extra)**
-**Archivo:** `app_tkinter.py`
-```bash
-python app_tkinter.py
+* `streamlit_app.py`: aplicación principal con interfaz web local.
+* `tkinter_app.py`: versión alternativa con Tkinter.
+* `pyqt_app.py`: versión alternativa con PyQt.
+* `kivy_app.py`: versión alternativa con Kivy.
+
+### `src/`
+
+Contiene la lógica reutilizable del proyecto.
+
+* `config.py`: define rutas principales y columnas del modelo.
+* `labels.py`: contiene etiquetas de clasificación y niveles de riesgo.
+* `model_loader.py`: carga el modelo TensorFlow Lite.
+* `predictor.py`: ejecuta la inferencia con el modelo.
+* `preprocessing.py`: transforma los datos ingresados al formato esperado por el modelo.
+* `risk_score.py`: calcula e interpreta el puntaje de riesgo orientativo.
+
+### `models/`
+
+Contiene el modelo entrenado convertido a TensorFlow Lite.
+
+```txt
+modelo_autismo.tflite
 ```
 
-### 2. **PyQt5 (Más profesional)**
-**Archivo:** `app_pyqt.py`
-```bash
-pip install PyQt5
-python app_pyqt.py
+### `data/`
+
+Contiene el dataset utilizado en el proyecto.
+
+```txt
+dataset_clinico_autismo.csv
 ```
 
----
+### `notebooks/`
 
-## 📋 Requisitos del Sistema
+Contiene el notebook usado para el análisis, entrenamiento y generación del modelo.
 
-- **Python 3.8+**
-- **Archivo:** `modelo_autismo.tflite` (generado del notebook)
-- **RAM:** Mínimo 2GB
-- **Sistema:** Windows, macOS, Linux
-
----
-
-## � Solución de Problemas
-
-### Error: "No se encontró modelo_autismo.tflite"
-1. Ejecuta el notebook `mark3.ipynb` completamente
-2. Asegúrate de que se genere el archivo `modelo_autismo.tflite`
-3. Coloca el archivo en la misma carpeta que `app_streamlit.py`
-
-### Error de dependencias
-```bash
-# Instalar versión específica de TensorFlow
-pip install tensorflow==2.13.0
-
-# O usar versión ligera
-pip install tflite-runtime
+```txt
+mark3.ipynb
 ```
 
-### Problemas de memoria
-- Usar `tflite-runtime` en lugar de `tensorflow` completo
-- Cerrar otras aplicaciones durante la ejecución
+### `tests/`
 
----
+Contiene scripts auxiliares de prueba y depuración.
 
-## � Información del Modelo
+## Variables utilizadas
 
-- **Arquitectura:** Red Neuronal Densa (32→16→5 neuronas)
-- **Precisión:** ~70% en conjunto de prueba
-- **Dataset:** 500,000 casos sintéticos basados en criterios clínicos
-- **Validación:** División 80/20
-- **Optimizador:** Adam
-- **Función de pérdida:** Sparse Categorical Crossentropy
+El modelo utiliza variables relacionadas con:
 
----
+* Edad.
+* Sexo.
+* Lenguaje.
+* Comunicación no verbal.
+* Contacto visual.
+* Interacción social.
+* Respuesta al nombre.
+* Estereotipias.
+* Intereses restringidos.
+* Regulación emocional.
+* TDAH.
+* Discapacidad intelectual.
+* Hipersensibilidad sensorial.
+* Trastornos del sueño.
+* Alimentación selectiva.
+* Antecedentes familiares.
+* Puntaje de riesgo.
 
-## ⚠️ Advertencia Médica
+## Categorías de salida
 
-Este sistema es una **herramienta de apoyo al diagnóstico** y NO sustituye la evaluación clínica profesional. Los resultados deben ser siempre validados por especialistas en neurología o psiquiatría infantil.
+El modelo clasifica los registros en cinco categorías:
 
----
+* Desarrollo típico.
+* TEA - Nivel 1.
+* TEA - Nivel 2.
+* TEA - Nivel 3.
+* Indeterminado.
 
-## 💡 Recomendaciones de Uso
+Estas categorías se presentan únicamente con fines académicos y orientativos.
 
-1. **Para desarrollo rápido:** Streamlit (recomendado)
-2. **Para aplicación de escritorio:** Tkinter o PyQt5  
-3. **Para móvil:** Considera Flutter o React Native
-4. **Para web:** Deploy de Streamlit en Heroku/Streamlit Cloud
+## Instalación
 
-¡La versión de Streamlit ahora refleja exactamente las variables y el preprocesamiento usado en el entrenamiento del modelo!
+Clonar el repositorio:
+
+```bash
+git clone <url-del-repositorio>
+cd Autism_prediction
+```
+
+Crear un entorno virtual:
+
+```bash
+python -m venv .venv
+```
+
+Activar el entorno virtual en Windows PowerShell:
+
+```powershell
+.venv\Scripts\activate
+```
+
+Activar el entorno virtual en Linux o WSL:
+
+```bash
+source .venv/bin/activate
+```
+
+Instalar dependencias:
+
+```bash
+pip install -r requirements.txt
+```
+
+## Ejecución
+
+Ejecutar la aplicación principal con Streamlit:
+
+```bash
+streamlit run app/streamlit_app.py
+```
+
+También se pueden ejecutar interfaces alternativas:
+
+```bash
+python app/tkinter_app.py
+```
+
+```bash
+python app/pyqt_app.py
+```
+
+```bash
+python app/kivy_app.py
+```
+
+## Flujo general
+
+```txt
+Datos ingresados por el usuario
+  ↓
+Cálculo de puntaje de riesgo
+  ↓
+Preprocesamiento de variables
+  ↓
+Modelo TensorFlow Lite
+  ↓
+Predicción
+  ↓
+Visualización de resultados en Streamlit
+```
+
+## Alcance del proyecto
+
+El proyecto implementa una aplicación académica funcional de clasificación orientativa.
+
+Incluye:
+
+* Modelo entrenado y convertido a TensorFlow Lite.
+* Interfaz principal en Streamlit.
+* Preprocesamiento de variables categóricas y numéricas.
+* Inferencia local.
+* Visualización de probabilidades.
+* Separación modular del código.
+* Versiones alternativas de interfaz.
+
+## Limitaciones
+
+* No sustituye una evaluación clínica profesional.
+* No debe utilizarse como diagnóstico médico definitivo.
+* El dataset utilizado corresponde a un contexto académico/simulado.
+* El preprocesador se reconstruye en tiempo de ejecución.
+* No se conserva un pipeline entrenado serializado.
+* No se implementa validación clínica real.
+* No se optimizó para producción.
+* Las interfaces alternativas pueden requerir ajustes adicionales.
+
+## Posibles mejoras
+
+* Guardar y reutilizar el preprocesador entrenado.
+* Mejorar el entrenamiento del modelo.
+* Agregar métricas detalladas de evaluación.
+* Implementar pruebas automatizadas.
+* Mejorar la validación de entradas.
+* Optimizar dependencias para despliegue.
+* Crear una versión ligera solo con TensorFlow Lite Runtime.
+* Documentar mejor el proceso de entrenamiento.
+* Agregar capturas de pantalla de la aplicación.
+
+## Estado del proyecto
+
+Proyecto académico funcional y reorganizado para fines de presentación en GitHub.
+
+No se encuentra orientado a producción ni a uso clínico real.
+
+## Autor
+
+Desarrollado por Axel Pariona como proyecto académico de Machine Learning aplicado.
