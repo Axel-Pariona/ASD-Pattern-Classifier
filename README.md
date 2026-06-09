@@ -172,7 +172,7 @@ Estas categorías se presentan únicamente con fines académicos y orientativos.
 Clonar el repositorio:
 
 ```bash
-git clone <url-del-repositorio>
+git clone https://github.com/Axel-Pariona/ASD-Pattern-Classifier.git
 cd Autism_prediction
 ```
 
